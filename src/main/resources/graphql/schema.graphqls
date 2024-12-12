@@ -1,0 +1,57 @@
+type Client {
+    id: Int
+    nom: String
+    prenom: String
+    email: String
+    telephone: String
+}
+
+type Chambre {
+    id: Int
+    type: String
+    prix: Float
+    disponible: Boolean
+}
+type ReservationResponse{
+    id: Int
+    client: Client
+    chambre: Chambre
+    dateDebut: String
+    dateFin: String
+    preferences: String
+}
+
+type Reservation {
+    id: Int
+    clientId: Int
+    chambreId: Int
+    dateDebut: String
+    dateFin: String
+    preferences: String
+}
+
+type Query {
+    allReservations: [ReservationResponse!]!
+    getReservationById(id: Int!): ReservationResponse!
+}
+
+type Mutation {
+    createReservation(
+        clientId: Int
+        chambreId: Int
+        dateDebut: String
+        dateFin: String
+        preferences: String
+    ): ReservationResponse
+
+    updateReservation(
+        id: Int
+        clientId: Int
+        chambreId: Int
+        dateDebut: String
+        dateFin: String
+        preferences: String
+    ): ReservationResponse
+
+    deleteReservation(id: Int!): Boolean!
+}
